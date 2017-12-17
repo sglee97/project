@@ -1,0 +1,15 @@
+* {margin:0; padding:0; }
+
+.login-bg {
+	
+	height:100vh; overflow:hidden; /*.login의 margin. vh는 viewport 높이(화면의 높이) 1vh가 1%. vh vw로 반응형에 많이 사용한다. */
+	background-color:#f8f8f8;
+}
+
+.login {
+	
+	width:360px; margin:100px auto 0; background:#fff;
+	padding:20px;
+	border:1px solid #ddd;
+	border-radius:5px;
+}
