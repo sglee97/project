@@ -20,21 +20,24 @@ class Login extends React.Component {
 	}
 	
 	handleSubmit(){
-		axios.post('http://localhost:4000/login', { 
-			username : this.state.username,
+		
+		
+		axios.post('http://localhost:4000/login', { //키값을 들고 서버에 전해준다.
+			username : this.state.username, //백엔드에 post로 던져존다.
 			userpass : this.state.userpass })
-		.then((response)=>{
+		.then((response)=>{ //응답한 내용이 server로 부터 들어온다.
 			
 			//let result = reponse.data;
-			let { success } = response.data; //es6문법
+			let { success, error } = response.data; //es6문법
 			let { history } = this.props;
 			
 			if( success === 1) { // 3개면 넘버 타입까지 같은지
-				history.history.push('./company'); //history등록 후 뒤로가기 기능
+				this.props.history.push('./company'); //history등록 후 뒤로가기 기능
 				//상위 컴포넌트에서 받는 3가지 히스토리, 매치, 로케이션 url위치
 			}else if ( success === 2) {
-				history.history.push('./register');
-			}else if ( success === -1) {
+				this.props.history.push('./register');
+			}else if ( error === -1) {
+				alert('비밀번호가 맞지 않습니다.');
 				return;
 				//this.props.history.push('./login');
 			}
@@ -76,5 +79,5 @@ class Login extends React.Component {
       )
    }
 }
-
+//symentic UI
 export default Login;
