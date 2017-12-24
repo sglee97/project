@@ -11,7 +11,8 @@ const Card = (props) => { //함수형 컴포넌트. 클래스 개념이 아니�
 		classes = 'favorite';
 	}
       return (
-        <div className="card">
+        <div className="card" 
+			onClick={()=>{props.cardLink(props.company_id)}}>
 			<div className="thums">
 				<div className="img"></div>
 				<div className="logo"></div>
@@ -30,6 +31,8 @@ const Card = (props) => { //함수형 컴포넌트. 클래스 개념이 아니�
 		</div>
      )
 }
+//클릭할 때만 실행하기 위해서 함수를 한번 거쳐서 넘겨준다.
+//하위의 컴포넌트를 실행하면 상위 것이 불려진다.
 //<span>은 하나라는 뜻이다.
 //props.   this.props와 같다.
 //&&은 앞의 내용이 옳으면 표현

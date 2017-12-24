@@ -10,8 +10,12 @@ class Company extends React.Component {
 		super();
 		
 		this.state = {
-			companyArray : [	]
+			companyArray : [],
+			type : '전체'
 		}
+		
+		this.handleClick = this.handleClick.bind(this);
+		this.handleCategory = this.handleCategory.bind(this);
 	}
 	
 	//react http통신 or ajax
@@ -31,6 +35,15 @@ class Company extends React.Component {
 	//concat 배열과 배열을 합친다.
 	/*componentWillUpdate(){}*/
 	
+	handleClick(company_id){
+		console.log(company_id)
+		this.props.history.push(`/company/${company_id}`) //push는 저장을 시키는 것. 히스토리 저장된다.
+	}
+	
+	handleCategory(e){ //e는 클릭되는 정보를 가지고 온다.
+		this.setState({ type : e.target.innerHTML }) //클릭할 때 마다 state변경 즉, 렌더링 다시한다. //e.target.innerHTML. e.target에서 innerHTML을 가져온다.
+	}
+	
      render(){
 		 
 		/* const companyArray = [ //배열과 객체로 만들어 준다.
@@ -47,12 +60,24 @@ class Company extends React.Component {
 		 */
 		 
 		 		 
-		 const { companyArray } = this.state;
+		 const { companyArray, type } = this.state; //state를 자져와서 렌더링을 다시 해준다.
 		 
-		 const list = companyArray.map((v)=>{ //es6방식으로 내부에서 맵구현
+		 const newArray = companyArray.filter((v)=>{
+			 
+			 if( type === '전체' ){ //타입이 전체면 전체를 리턴
+			 	return v;
+			 }
+			 
+			 return v.type === type;
+		 
+		 }); //전체는 13개 배열이다. 배열을 타입에 따라 나눠서 새로운 배열로 만들어 준다.
+		 
+		 const list = newArray.map((v)=>{ //es6방식으로 내부에서 맵구현
 				return (
 					<Card
-						key={v.id}
+						cardLink={this.handleClick} //함수를 넘겨 받는아서 card.js로 넘긴다.
+						key={v.id} //맵을 돌릴 때 필요한 것
+						company_id = {v.id}
 						company={v.name}
 						recruit={v.recruit}
 						rebate={v.rebate}
@@ -64,9 +89,14 @@ class Company extends React.Component {
 
       return(
 		  <div>
+			  <ul className="category">
+				  <li onClick={this.handleCategory}>전체</li>
+				  <li onClick={this.handleCategory}>프론트엔드개발자</li>
+				  <li onClick={this.handleCategory}>백엔드개발자</li>
+				  <li onClick={this.handleCategory}>앱개발자</li>
+			  </ul>	  
 			  <div className="list">
 				  {list}
-				
 			  </div>
 		 </div>
       )

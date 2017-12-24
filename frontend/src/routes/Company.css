@@ -1,24 +1,29 @@
 * {margin:0; padding:0;}
 
-.container { width:1080px;	margin: 30px auto;
-	/*270*4 1080 컨테이너 크기*/ }
+.container { width:1080px; margin:30px auto; } /*270*4 1080 컨테이너 크기*/ 
 
-.card { float: left; width:250px; margin:10px; border:1px solid #ccc; }
+.card { float:left; width:250px; margin:10px; border:1px solid #ccc; }
 
-.thums { position:relative;}
+.thums { position:relative; }
 .thums .img { height:185px; background:#ddd; }
-.thums .logo { width:40px; height:40px; background:#ccc;
-	position:absolute; left:15px; bottom:15px;
+.thums .logo { width:40px; height:40px; background:#ccc; 
+	position:absolute; left:15px; bottom:15px; 
 }
 
-.info { border-top:1px solid #ccc; border-bottom:1px solid #ccc;
+.info { border-top:1px solid #ccc; border-bottom:1px solid #ccc; 
 	padding:15px;
 }
-.info h3 { font-size:18px; }
+.info h3 { font-size:18px; white-space:nowrap; word-wrap:normal; overflow: hidden; text-overflow:ellipsis; }
 .info .company { color:#999; }
 .info .rebate { font-size:12px; color:#555; }
 
-.opt { height:40xp; line-height:40px; padding:0 15px; }
-.opt .recom { float:left; }
-.opt .favorite { float:right; width: 16px; height:16px; border-radius:50%; border:1px solid #ccc; margin:11px 0; }
-.opt .favorite.active { background-color:red;}
+.opt { height:40px; line-height:40px; padding:0 15px; }
+.opt .recom { float:left;}
+.opt .favorite { float:right; width:16px; height:16px; border-radius:50%; border:1px solid #ccc; margin:12px 0; }
+.opt .favorite.active { background-color:red; }
+
+.category { overflow:hidden; margin-bottom:10px; }
+.category li { float:left; background:#fff; border:1px solid #ddd;
+	padding:15px 20px; margin:0 10px; cursor:pointer; list-style:none;
+}
+

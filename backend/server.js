@@ -45,6 +45,27 @@ app.get('/company', function(req, res){ //받는 것
 	res.json(companyList);
 }); //http://localhost:4000/company
 
+app.get('/company/:company_id', function(req,res){
+	console.log(req.params.company_id); //2
+	
+	const all = companyList.company;
+	console.log(all);
+	/*
+		{id : 1, .....}
+		{id : 2, .....}
+		...
+	*/
+	
+	const result = all.filter(function(v){
+		
+		return v.id == req.params.company_id;
+	}); //http://localhost:4000/company/1 각 회사의 정보가 넘어온다.
+	
+	res.json(result[0]);
+	
+});
+	
+
 const server = app.listen(4000);
 //-------------프론트엔드
 
